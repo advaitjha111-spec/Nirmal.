@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Worker Dashboard - WasteWise Portal</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fwastewise9252back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header Section -->
+    <header class="bg-surface shadow-civic border-b border-border-light sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1zM10 6a2 2 0 0 1 4 0v1h-4V6zm8 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9h2v1a1 1 0 0 0 2 0V9h4v1a1 1 0 0 0 2 0V9h2v10z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-text-primary">WasteWise Portal</h1>
+                        <p class="text-xs text-text-secondary">Worker Dashboard</p>
+                    </div>
+                </div>
+
+                <!-- Header Actions -->
+                <div class="flex items-center space-x-4">
+                    <!-- Attendance Status -->
+                    <div class="hidden sm:flex items-center space-x-2 bg-green-50 px-3 py-1 rounded-full">
+                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span class="text-sm text-green-700 font-medium">On Duty</span>
+                    </div>
+
+                    <!-- Notifications -->
+                    <button class="touch-target text-text-secondary hover:text-primary transition-civic relative">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+                        </svg>
+                        <div class="absolute -top-1 -right-1 w-3 h-3 bg-error rounded-full flex items-center justify-center">
+                            <span class="text-xs text-white font-bold">3</span>
+                        </div>
+                    </button>
+
+                    <!-- Profile Menu -->
+                    <div class="relative">
+                        <button id="profileMenu" class="flex items-center space-x-2 text-text-primary hover:text-primary transition-civic">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Worker Profile" class="w-8 h-8 rounded-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <span class="hidden sm:block text-sm font-medium">Rajesh Kumar</span>
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </button>
+                        
+                        <!-- Dropdown Menu -->
+                        <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-surface rounded-lg shadow-civic-lg border border-border-light z-50">
+                            <div class="py-2">
+                                <a href="training_modules.html" class="block px-4 py-2 text-sm text-text-primary hover:bg-gray-50 transition-civic">Training Modules</a>
+                                <a href="javascript:void(0)" class="block px-4 py-2 text-sm text-text-primary hover:bg-gray-50 transition-civic">Settings</a>
+                                <a href="javascript:void(0)" class="block px-4 py-2 text-sm text-text-primary hover:bg-gray-50 transition-civic">Help & Support</a>
+                                <hr class="my-1 border-border-light" />
+                                <a href="login.html" class="block px-4 py-2 text-sm text-error hover:bg-red-50 transition-civic">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <!-- Welcome Section -->
+        <div class="mb-6">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                    <h2 class="text-2xl font-bold text-text-primary">Good Morning, Rajesh!</h2>
+                    <p class="text-text-secondary mt-1">Today is Monday, September 9, 2025</p>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="flex items-center space-x-3 mt-4 sm:mt-0">
+                    <button id="checkInBtn" class="btn-primary text-sm px-4 py-2">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        Check In
+                    </button>
+                    <button id="emergencyBtn" class="bg-error text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-600 transition-civic">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                        </svg>
+                        Emergency
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Overview -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div class="card p-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-text-secondary text-sm">Today's Tasks</p>
+                        <p class="text-2xl font-bold text-text-primary">8</p>
+                        <p class="text-xs text-green-600">6 completed</p>
+                    </div>
+                    <div class="w-12 h-12 bg-primary-50 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-text-secondary text-sm">Today's Earnings</p>
+                        <p class="text-2xl font-bold text-text-primary">₹450</p>
+                        <p class="text-xs text-green-600">+₹50 bonus</p>
+                    </div>
+                    <div class="w-12 h-12 bg-accent-50 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-text-secondary text-sm">Route Progress</p>
+                        <p class="text-2xl font-bold text-text-primary">75%</p>
+                        <p class="text-xs text-blue-600">3.2 km remaining</p>
+                    </div>
+                    <div class="w-12 h-12 bg-secondary-50 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-text-secondary text-sm">Safety Score</p>
+                        <p class="text-2xl font-bold text-text-primary">95%</p>
+                        <p class="text-xs text-green-600">Excellent</p>
+                    </div>
+                    <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Dashboard Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Task Management Section -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Current Route -->
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-text-primary">Current Route</h3>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                            <span class="text-sm text-green-600 font-medium">Active</span>
+                        </div>
+                    </div>
+
+                    <!-- Route Map Placeholder -->
+                    <div class="bg-gray-100 rounded-lg h-48 mb-4 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Route Map" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <div class="text-center text-white">
+                                <svg class="w-12 h-12 mx-auto mb-2" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                </svg>
+                                <p class="text-sm font-medium">Sector 15, Noida</p>
+                                <p class="text-xs opacity-75">Route B-7</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Route Details -->
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div class="bg-gray-50 p-3 rounded-lg">
+                            <p class="text-xs text-text-secondary">Total Distance</p>
+                            <p class="text-lg font-semibold text-text-primary">12.5 km</p>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-lg">
+                            <p class="text-xs text-text-secondary">Estimated Time</p>
+                            <p class="text-lg font-semibold text-text-primary">4.5 hrs</p>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Actions -->
+                    <div class="flex space-x-3">
+                        <button class="btn-primary flex-1 text-sm">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                            Start Navigation
+                        </button>
+                        <button class="bg-gray-100 text-text-primary px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-200 transition-civic">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Task List -->
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-text-primary">Today's Tasks</h3>
+                        <span class="text-sm text-text-secondary">6 of 8 completed</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <!-- Completed Task -->
+                        <div class="flex items-center p-3 bg-green-50 border border-green-200 rounded-lg">
+                            <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-medium text-green-800">Residential Block A</p>
+                                <p class="text-sm text-green-600">45 households • Completed at 9:30 AM</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm font-medium text-green-800">₹75</p>
+                            </div>
+                        </div>
+
+                        <!-- Active Task -->
+                        <div class="flex items-center p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                            <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mr-3 animate-pulse">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-medium text-blue-800">Commercial Complex</p>
+                                <p class="text-sm text-blue-600">12 shops • In Progress</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm font-medium text-blue-800">₹90</p>
+                                <button class="text-xs bg-blue-500 text-white px-2 py-1 rounded mt-1">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <!-- Pending Task -->
+                        <div class="flex items-center p-3 bg-gray-50 border border-gray-200 rounded-lg">
+                            <div class="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center mr-3">
+                                <span class="text-xs text-gray-600 font-bold">3</span>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-medium text-text-primary">Park Area Cleaning</p>
+                                <p class="text-sm text-text-secondary">Central Park • Scheduled for 2:00 PM</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm font-medium text-text-primary">₹60</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="w-full mt-4 text-primary text-sm font-medium hover:text-primary-600 transition-civic">
+                        View All Tasks (8)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- Earnings Summary -->
+                <div class="card p-6">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">Earnings Summary</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-secondary">Today</span>
+                            <span class="font-semibold text-text-primary">₹450</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-secondary">This Week</span>
+                            <span class="font-semibold text-text-primary">₹2,850</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-secondary">This Month</span>
+                            <span class="font-semibold text-text-primary">₹12,400</span>
+                        </div>
+                        
+                        <hr class="border-border-light" />
+                        
+                        <div class="bg-accent-50 p-3 rounded-lg">
+                            <div class="flex items-center justify-between">
+                                <span class="text-accent-700 font-medium">Bonus Earned</span>
+                                <span class="font-bold text-accent-700">₹150</span>
+                            </div>
+                            <p class="text-xs text-accent-600 mt-1">Safety compliance bonus</p>
+                        </div>
+                    </div>
+
+                    <button class="w-full mt-4 btn-secondary text-sm">
+                        View Detailed Report
+                    </button>
+                </div>
+
+                <!-- PPE Marketplace -->
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-text-primary">Safety Equipment</h3>
+                        <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                        </svg>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-civic cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Safety Gloves" class="w-12 h-12 object-cover rounded-lg mr-3" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <div class="flex-1">
+                                <p class="font-medium text-text-primary">Safety Gloves</p>
+                                <p class="text-sm text-text-secondary">Heavy duty, waterproof</p>
+                                <div class="flex items-center space-x-2 mt-1">
+                                    <span class="text-sm font-semibold text-primary">₹85</span>
+                                    <span class="text-xs text-text-secondary line-through">₹120</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-civic cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Safety Mask" class="w-12 h-12 object-cover rounded-lg mr-3" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <div class="flex-1">
+                                <p class="font-medium text-text-primary">N95 Masks</p>
+                                <p class="text-sm text-text-secondary">Pack of 10</p>
+                                <div class="flex items-center space-x-2 mt-1">
+                                    <span class="text-sm font-semibold text-primary">₹150</span>
+                                    <span class="text-xs text-text-secondary line-through">₹200</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="w-full mt-4 bg-accent text-white py-2 rounded-lg text-sm font-medium hover:bg-accent-700 transition-civic">
+                        Browse All Equipment
+                    </button>
+                </div>
+
+                <!-- Training Progress -->
+                <div class="card p-6">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">Training Progress</h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-text-primary">Safety Protocols</span>
+                                <span class="text-sm text-green-600 font-medium">Completed</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full w-full"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-text-primary">Waste Segregation</span>
+                                <span class="text-sm text-blue-600 font-medium">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full w-4/5"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-text-primary">Equipment Handling</span>
+                                <span class="text-sm text-orange-600 font-medium">60%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-orange-500 h-2 rounded-full w-3/5"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="w-full mt-4 btn-primary text-sm" onclick="window.location.href='training_modules.html'">
+                        Continue Training
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions Bar -->
+        <div class="fixed bottom-0 left-0 right-0 bg-surface border-t border-border-light p-4 lg:hidden">
+            <div class="flex justify-around items-center max-w-md mx-auto">
+                <button class="flex flex-col items-center space-y-1 text-primary">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                    </svg>
+                    <span class="text-xs">Dashboard</span>
+                </button>
+                
+                <button class="flex flex-col items-center space-y-1 text-text-secondary" onclick="window.location.href='service_requests.html'">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
+                    <span class="text-xs">Tasks</span>
+                </button>
+                
+                <button class="flex flex-col items-center space-y-1 text-text-secondary">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                    <span class="text-xs">Location</span>
+                </button>
+                
+                <button class="flex flex-col items-center space-y-1 text-text-secondary" onclick="window.location.href='training_modules.html'">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    <span class="text-xs">Training</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-border-light py-6 mb-16 lg:mb-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center space-y-2">
+                <p class="text-sm text-text-secondary">
+                    © 2025 WasteWise Portal. All Rights Reserved.
+                </p>
+                <div class="flex justify-center items-center space-x-6 text-xs text-text-secondary">
+                    <a href="javascript:void(0)" class="hover:text-primary transition-civic">Help Center</a>
+                    <a href="javascript:void(0)" class="hover:text-primary transition-civic">Contact Support</a>
+                    <a href="javascript:void(0)" class="hover:text-primary transition-civic">Safety Guidelines</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dashboard functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Profile dropdown toggle
+            const profileMenu = document.getElementById('profileMenu');
+            const profileDropdown = document.getElementById('profileDropdown');
+            
+            profileMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
+                profileDropdown.classList.toggle('hidden');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function() {
+                profileDropdown.classList.add('hidden');
+            });
+            
+            // Check-in functionality
+            const checkInBtn = document.getElementById('checkInBtn');
+            let isCheckedIn = false;
+            
+            checkInBtn.addEventListener('click', function() {
+                if (!isCheckedIn) {
+                    // Check-in process
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function(position) {
+                            // Simulate check-in success
+                            checkInBtn.innerHTML = `
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                                Checked In
+                            `;
+                            checkInBtn.classList.remove('btn-primary');
+                            checkInBtn.classList.add('bg-green-500', 'text-white');
+                            isCheckedIn = true;
+                            
+                            showNotification('Successfully checked in at your location!', 'success');
+                        }, function(error) {
+                            showNotification('Location access required for check-in', 'error');
+                        });
+                    } else {
+                        showNotification('Geolocation not supported by this browser', 'error');
+                    }
+                } else {
+                    // Check-out process
+                    checkInBtn.innerHTML = `
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        Check In
+                    `;
+                    checkInBtn.classList.add('btn-primary');
+                    checkInBtn.classList.remove('bg-green-500', 'text-white');
+                    isCheckedIn = false;
+                    
+                    showNotification('Successfully checked out!', 'success');
+                }
+            });
+            
+            // Emergency button
+            const emergencyBtn = document.getElementById('emergencyBtn');
+            emergencyBtn.addEventListener('click', function() {
+                if (confirm('Are you sure you want to trigger an emergency alert?')) {
+                    showNotification('Emergency alert sent to supervisors!', 'error');
+                    // In real app, this would send emergency notification
+                }
+            });
+            
+            // Task completion simulation
+            const markCompleteButtons = document.querySelectorAll('button:contains("Mark Complete")');
+            markCompleteButtons.forEach(button => {
+                if (button.textContent.includes('Mark Complete')) {
+                    button.addEventListener('click', function() {
+                        const taskCard = button.closest('.flex');
+                        taskCard.classList.remove('bg-blue-50', 'border-blue-200');
+                        taskCard.classList.add('bg-green-50', 'border-green-200');
+                        
+                        const taskStatus = taskCard.querySelector('.text-blue-600');
+                        if (taskStatus) {
+                            taskStatus.textContent = 'Completed just now';
+                            taskStatus.classList.remove('text-blue-600');
+                            taskStatus.classList.add('text-green-600');
+                        }
+                        
+                        button.remove();
+                        showNotification('Task marked as completed!', 'success');
+                        
+                        // Update stats
+                        updateTaskStats();
+                    });
+                }
+            });
+            
+            // Update task statistics
+            function updateTaskStats() {
+                const completedTasks = document.querySelectorAll('.bg-green-50').length;
+                const totalTasks = 8;
+                
+                // Update today's tasks counter
+                const tasksCounter = document.querySelector('.text-2xl.font-bold.text-text-primary');
+                if (tasksCounter && tasksCounter.textContent === '8') {
+                    const completedCounter = tasksCounter.nextElementSibling;
+                    if (completedCounter) {
+                        completedCounter.textContent = `${completedTasks} completed`;
+                    }
+                }
+                
+                // Update earnings (simulate earning for completed task)
+                const earningsElement = document.querySelector('.text-2xl.font-bold.text-text-primary');
+                if (earningsElement && earningsElement.textContent.includes('₹')) {
+                    const currentEarnings = parseInt(earningsElement.textContent.replace('₹', ''));
+                    earningsElement.textContent = `₹${currentEarnings + 90}`;
+                }
+            }
+            
+            // Simulate real-time updates
+            setInterval(function() {
+                // Update route progress
+                const progressElement = document.querySelector('.text-2xl.font-bold.text-text-primary');
+                if (progressElement && progressElement.textContent.includes('%')) {
+                    const currentProgress = parseInt(progressElement.textContent.replace('%', ''));
+                    if (currentProgress < 100) {
+                        const newProgress = Math.min(currentProgress + 1, 100);
+                        progressElement.textContent = `${newProgress}%`;
+                        
+                        // Update remaining distance
+                        const distanceElement = progressElement.parentElement.querySelector('.text-xs.text-blue-600');
+                        if (distanceElement) {
+                            const remainingKm = Math.max(3.2 - (newProgress / 100 * 3.2), 0).toFixed(1);
+                            distanceElement.textContent = `${remainingKm} km remaining`;
+                        }
+                    }
+                }
+            }, 30000); // Update every 30 seconds
+            
+            // Utility function for notifications
+            function showNotification(message, type) {
+                const notification = document.createElement('div');
+                notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-civic-lg z-50 max-w-sm transition-civic ${
+                    type === 'error' ? 'bg-red-50 text-red-700 border border-red-200' :
+                    type === 'success' ? 'bg-green-50 text-green-700 border border-green-200' :
+                    'bg-blue-50 text-blue-700 border border-blue-200'
+                }`;
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 4000);
+            }
+            
+            // Initialize with current time
+            updateCurrentTime();
+            setInterval(updateCurrentTime, 60000); // Update every minute
+            
+            function updateCurrentTime() {
+                const now = new Date();
+                const options = { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                };
+                const dateString = now.toLocaleDateString('en-IN', options);
+                
+                const timeElement = document.querySelector('p.text-text-secondary.mt-1');
+                if (timeElement) {
+                    timeElement.textContent = `Today is ${dateString}`;
+                }
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Training Modules - WasteWise Portal</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fwastewise9252back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header Section -->
+    <header class="bg-surface shadow-civic border-b border-border-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1zM10 6a2 2 0 0 1 4 0v1h-4V6zm8 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9h2v1a1 1 0 0 0 2 0V9h4v1a1 1 0 0 0 2 0V9h2v10z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-text-primary">WasteWise Portal</h1>
+                        <p class="text-xs text-text-secondary">Digital Waste Management</p>
+                    </div>
+                </div>
+
+                <!-- Navigation & Controls -->
+                <div class="flex items-center space-x-4">
+                    <nav class="hidden md:flex items-center space-x-6">
+                        <a href="citizen_dashboard.html" class="text-text-secondary hover:text-primary transition-civic">Dashboard</a>
+                        <a href="training_modules.html" class="text-primary font-medium">Training</a>
+                        <a href="service_requests.html" class="text-text-secondary hover:text-primary transition-civic">Services</a>
+                    </nav>
+                    
+                    <select id="languageSelect" class="form-input text-sm py-2 px-3 min-h-0 w-auto">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="mr">मराठी</option>
+                        <option value="gu">ગુજરાતી</option>
+                        <option value="ta">தமிழ்</option>
+                    </select>
+                    
+                    <button id="audioToggle" class="touch-target text-text-secondary hover:text-primary transition-civic">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                        </svg>
+                    </button>
+
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-primary-50 rounded-full flex items-center justify-center">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                        <button id="profileMenu" class="text-text-secondary hover:text-primary transition-civic">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+                <div>
+                    <h2 class="text-3xl font-bold text-text-primary">Training Modules</h2>
+                    <p class="text-text-secondary mt-1">Interactive waste management education and certification</p>
+                </div>
+                
+                <!-- Progress Overview -->
+                <div class="flex items-center space-x-6">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-primary">12</div>
+                        <div class="text-xs text-text-secondary">Completed</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-accent">3</div>
+                        <div class="text-xs text-text-secondary">In Progress</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-secondary">8</div>
+                        <div class="text-xs text-text-secondary">Certificates</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learning Path Progress -->
+        <div class="card p-6 mb-8">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-text-primary">Your Learning Journey</h3>
+                <div class="flex items-center space-x-2">
+                    <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    <span class="text-sm font-medium text-accent">15-day streak!</span>
+                </div>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <span class="text-sm text-text-secondary">Overall Progress</span>
+                    <span class="text-sm font-medium text-text-primary">75% Complete</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-3">
+                    <div class="bg-gradient-to-r from-primary to-secondary h-3 rounded-full" style="width: 75%"></div>
+                </div>
+                
+                <!-- Achievement Badges -->
+                <div class="flex items-center space-x-4 pt-4">
+                    <span class="text-sm font-medium text-text-primary">Recent Achievements:</span>
+                    <div class="flex space-x-2">
+                        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center" title="Waste Sorting Expert">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <div class="w-8 h-8 bg-secondary rounded-full flex items-center justify-center" title="Safety Champion">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                            </svg>
+                        </div>
+                        <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center" title="Quiz Master">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter and Search -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0 mb-6">
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <input type="text" id="searchModules" placeholder="Search modules..." class="form-input pl-10 w-64" />
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <svg class="w-4 h-4 text-text-secondary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <select id="categoryFilter" class="form-input w-48">
+                    <option value="all">All Categories</option>
+                    <option value="citizen">Citizen Education</option>
+                    <option value="worker">Worker Safety</option>
+                    <option value="admin">Administrative</option>
+                </select>
+            </div>
+            
+            <button id="resetFilters" class="btn-secondary">
+                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+                Reset Filters
+            </button>
+        </div>
+
+        <!-- Training Modules Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+            <!-- Module 1: Waste Sorting Basics -->
+            <div class="card overflow-hidden training-module" data-category="citizen">
+                <div class="relative">
+                    <img src="https://images.pexels.com/photos/3735218/pexels-photo-3735218.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Waste Sorting" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    
+                    <!-- Progress Overlay -->
+                    <div class="absolute top-4 right-4">
+                        <div class="bg-white rounded-full p-2 shadow-civic">
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <!-- Video Play Button -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <button class="play-button bg-white bg-opacity-90 rounded-full p-4 hover:bg-opacity-100 transition-civic">
+                            <svg class="w-8 h-8 text-primary ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="status-success">Completed</span>
+                        <div class="flex items-center space-x-1">
+                            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            <span class="text-sm text-text-secondary">95 points</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-lg font-semibold text-text-primary mb-2">Waste Sorting Basics</h3>
+                    <p class="text-text-secondary text-sm mb-4">Learn the fundamentals of waste segregation and proper sorting techniques for different waste types.</p>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-text-secondary">Duration: 15 mins</span>
+                            <span class="text-text-secondary">Quiz: 10 questions</span>
+                        </div>
+                        
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full" style="width: 100%"></div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <button class="text-primary hover:text-primary-600 text-sm font-medium">View Certificate</button>
+                            <button class="text-secondary hover:text-secondary-600 text-sm font-medium">Retake Quiz</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 2: Safety Protocols -->
+            <div class="card overflow-hidden training-module" data-category="worker">
+                <div class="relative">
+                    <img src="https://images.pixabay.com/photo/2020/04/18/08/33/coronavirus-5058247_1280.jpg" alt="Safety Equipment" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    
+                    <!-- Progress Overlay -->
+                    <div class="absolute top-4 right-4">
+                        <div class="bg-white rounded-full p-2 shadow-civic">
+                            <div class="w-5 h-5 bg-accent rounded-full flex items-center justify-center">
+                                <span class="text-xs text-white font-bold">3/5</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video Play Button -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <button class="play-button bg-white bg-opacity-90 rounded-full p-4 hover:bg-opacity-100 transition-civic">
+                            <svg class="w-8 h-8 text-primary ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="status-warning">In Progress</span>
+                        <div class="flex items-center space-x-1">
+                            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            <span class="text-sm text-text-secondary">60 points</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-lg font-semibold text-text-primary mb-2">Worker Safety Protocols</h3>
+                    <p class="text-text-secondary text-sm mb-4">Essential safety guidelines and PPE usage for waste collection workers.</p>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-text-secondary">Duration: 20 mins</span>
+                            <span class="text-text-secondary">Quiz: 15 questions</span>
+                        </div>
+                        
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-accent h-2 rounded-full" style="width: 60%"></div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <button class="btn-primary text-sm px-4 py-2">Continue Learning</button>
+                            <button class="text-secondary hover:text-secondary-600 text-sm font-medium">Download PPE Guide</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 3: Composting Techniques -->
+            <div class="card overflow-hidden training-module" data-category="citizen">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Composting" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    
+                    <!-- New Badge -->
+                    <div class="absolute top-4 left-4">
+                        <div class="bg-accent text-white px-2 py-1 rounded-full text-xs font-medium">
+                            New
+                        </div>
+                    </div>
+                    
+                    <!-- Video Play Button -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <button class="play-button bg-white bg-opacity-90 rounded-full p-4 hover:bg-opacity-100 transition-civic">
+                            <svg class="w-8 h-8 text-primary ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">Not Started</span>
+                        <div class="flex items-center space-x-1">
+                            <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            <span class="text-sm text-text-secondary">0 points</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-lg font-semibold text-text-primary mb-2">Home Composting Techniques</h3>
+                    <p class="text-text-secondary text-sm mb-4">Step-by-step guide to creating nutrient-rich compost from kitchen waste.</p>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-text-secondary">Duration: 25 mins</span>
+                            <span class="text-text-secondary">Quiz: 12 questions</span>
+                        </div>
+                        
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-gray-300 h-2 rounded-full" style="width: 0%"></div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <button class="btn-primary text-sm px-4 py-2">Start Module</button>
+                            <button class="text-secondary hover:text-secondary-600 text-sm font-medium">Preview Content</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 4: Data Analytics -->
+            <div class="card overflow-hidden training-module" data-category="admin">
+                <div class="relative">
+                    <img src="https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Data Analytics" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    
+                    <!-- Progress Overlay -->
+                    <div class="absolute top-4 right-4">
+                        <div class="bg-white rounded-full p-2 shadow-civic">
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <!-- Video Play Button -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <button class="play-button bg-white bg-opacity-90 rounded-full p-4 hover:bg-opacity-100 transition-civic">
+                            <svg class="w-8 h-8 text-primary ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="status-success">Completed</span>
+                        <div class="flex items-center space-x-1">
+                            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            <span class="text-sm text-text-secondary">88 points</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-lg font-semibold text-text-primary mb-2">Waste Data Analytics</h3>
+                    <p class="text-text-secondary text-sm mb-4">Understanding waste management metrics and creating actionable insights from data.</p>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-text-secondary">Duration: 30 mins</span>
+                            <span class="text-text-secondary">Quiz: 20 questions</span>
+                        </div>
+                        
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full" style="width: 100%"></div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <button class="text-primary hover:text-primary-600 text-sm font-medium">View Certificate</button>
+                            <button class="text-secondary hover:text-secondary-600 text-sm font-medium">Download Resources</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 5: Route Optimization -->
+            <div class="card overflow-hidden training-module" data-category="worker">
+                <div class="relative">
+                    <img src="https://images.pixabay.com/photo/2018/01/09/03/49/the-natural-scenery-3070808_1280.jpg" alt="Route Planning" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    
+                    <!-- Locked Badge -->
+                    <div class="absolute top-4 right-4">
+                        <div class="bg-white rounded-full p-2 shadow-civic">
+                            <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <!-- Overlay for locked content -->
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <svg class="w-12 h-12 mx-auto mb-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6z"/>
+                            </svg>
+                            <p class="text-sm">Complete Safety Protocols first</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">Locked</span>
+                        <div class="flex items-center space-x-1">
+                            <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            <span class="text-sm text-text-secondary">0 points</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-lg font-semibold text-text-primary mb-2">Route Optimization</h3>
+                    <p class="text-text-secondary text-sm mb-4">Advanced techniques for efficient waste collection route planning and GPS navigation.</p>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-text-secondary">Duration: 18 mins</span>
+                            <span class="text-text-secondary">Quiz: 8 questions</span>
+                        </div>
+                        
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-gray-300 h-2 rounded-full" style="width: 0%"></div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <button class="bg-gray-300 text-gray-500 text-sm px-4 py-2 rounded-lg cursor-not-allowed" disabled>
+                                Unlock Required
+                            </button>
+                            <span class="text-xs text-text-secondary">Prerequisite: Safety Protocols</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 6: Community Engagement -->
+            <div class="card overflow-hidden training-module" data-category="citizen">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Community" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    
+                    <!-- Progress Overlay -->
+                    <div class="absolute top-4 right-4">
+                        <div class="bg-white rounded-full p-2 shadow-civic">
+                            <div class="w-5 h-5 bg-secondary rounded-full flex items-center justify-center">
+                                <span class="text-xs text-white font-bold">1/3</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video Play Button -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <button class="play-button bg-white bg-opacity-90 rounded-full p-4 hover:bg-opacity-100 transition-civic">
+                            <svg class="w-8 h-8 text-primary ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="status-warning">In Progress</span>
+                        <div class="flex items-center space-x-1">
+                            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            <span class="text-sm text-text-secondary">25 points</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-lg font-semibold text-text-primary mb-2">Community Engagement</h3>
+                    <p class="text-text-secondary text-sm mb-4">Building awareness and encouraging participation in local waste management initiatives.</p>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-text-secondary">Duration: 22 mins</span>
+                            <span class="text-text-secondary">Quiz: 14 questions</span>
+                        </div>
+                        
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-secondary h-2 rounded-full" style="width: 33%"></div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <button class="btn-primary text-sm px-4 py-2">Continue Learning</button>
+                            <button class="text-secondary hover:text-secondary-600 text-sm font-medium">Share Progress</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-8">
+            <button id="loadMore" class="btn-secondary">
+                Load More Modules
+                <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                </svg>
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-border-light py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center space-y-2">
+                <p class="text-sm text-text-secondary">
+                    © 2025 WasteWise Portal. All Rights Reserved.
+                </p>
+                <div class="flex justify-center items-center space-x-6 text-xs text-text-secondary">
+                    <a href="javascript:void(0)" class="hover:text-primary transition-civic">Help Center</a>
+                    <a href="javascript:void(0)" class="hover:text-primary transition-civic">Contact Support</a>
+                    <a href="javascript:void(0)" class="hover:text-primary transition-civic">System Status</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-4xl w-full max-h-full overflow-hidden">
+            <div class="flex items-center justify-between p-4 border-b">
+                <h3 id="modalTitle" class="text-lg font-semibold text-text-primary">Training Video</h3>
+                <button id="closeModal" class="text-text-secondary hover:text-text-primary">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="aspect-video bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+                    <div class="text-center">
+                        <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        <p class="text-text-secondary">Video player would be embedded here</p>
+                        <p class="text-sm text-text-secondary mt-2">Supporting multiple languages with audio narration</p>
+                    </div>
+                </div>
+                
+                <!-- Video Controls -->
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <button class="btn-primary text-sm px-4 py-2">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            Play
+                        </button>
+                        <select class="form-input text-sm py-2 px-3 min-h-0 w-auto">
+                            <option value="en">English Audio</option>
+                            <option value="hi">Hindi Audio</option>
+                            <option value="mr">Marathi Audio</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex items-center space-x-2">
+                        <button class="text-text-secondary hover:text-primary">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </button>
+                        <span class="text-sm text-text-secondary">Mark as Complete</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const searchInput = document.getElementById('searchModules');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const resetFilters = document.getElementById('resetFilters');
+            const trainingModules = document.querySelectorAll('.training-module');
+            const playButtons = document.querySelectorAll('.play-button');
+            const videoModal = document.getElementById('videoModal');
+            const closeModal = document.getElementById('closeModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const loadMoreBtn = document.getElementById('loadMore');
+            const audioToggle = document.getElementById('audioToggle');
+            const languageSelect = document.getElementById('languageSelect');
+
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                filterModules();
+            });
+
+            // Category filter
+            categoryFilter.addEventListener('change', function() {
+                filterModules();
+            });
+
+            // Reset filters
+            resetFilters.addEventListener('click', function() {
+                searchInput.value = '';
+                categoryFilter.value = 'all';
+                filterModules();
+            });
+
+            // Filter modules function
+            function filterModules() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedCategory = categoryFilter.value;
+
+                trainingModules.forEach(module => {
+                    const title = module.querySelector('h3').textContent.toLowerCase();
+                    const description = module.querySelector('p').textContent.toLowerCase();
+                    const category = module.dataset.category;
+
+                    const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
+                    const matchesCategory = selectedCategory === 'all' || category === selectedCategory;
+
+                    if (matchesSearch && matchesCategory) {
+                        module.style.display = 'block';
+                        module.classList.add('fade-in');
+                    } else {
+                        module.style.display = 'none';
+                        module.classList.remove('fade-in');
+                    }
+                });
+            }
+
+            // Video modal functionality
+            playButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const moduleCard = this.closest('.training-module');
+                    const title = moduleCard.querySelector('h3').textContent;
+                    
+                    modalTitle.textContent = title;
+                    videoModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Close modal
+            closeModal.addEventListener('click', function() {
+                videoModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+
+            // Close modal on backdrop click
+            videoModal.addEventListener('click', function(e) {
+                if (e.target === videoModal) {
+                    videoModal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Load more functionality
+            loadMoreBtn.addEventListener('click', function() {
+                showNotification('Loading more training modules...', 'info');
+                
+                // Simulate loading delay
+                setTimeout(() => {
+                    showNotification('More modules will be available soon!', 'success');
+                }, 1000);
+            });
+
+            // Audio toggle
+            audioToggle.addEventListener('click', function() {
+                const isActive = this.classList.contains('text-primary');
+                
+                if (isActive) {
+                    this.classList.remove('text-primary');
+                    this.classList.add('text-text-secondary');
+                    showNotification('Audio narration disabled', 'info');
+                } else {
+                    this.classList.remove('text-text-secondary');
+                    this.classList.add('text-primary');
+                    showNotification('Audio narration enabled', 'success');
+                }
+            });
+
+            // Language selection
+            languageSelect.addEventListener('change', function() {
+                const selectedLang = this.value;
+                const langNames = {
+                    'en': 'English',
+                    'hi': 'Hindi',
+                    'mr': 'Marathi',
+                    'gu': 'Gujarati',
+                    'ta': 'Tamil'
+                };
+                
+                showNotification(`Language changed to ${langNames[selectedLang]}`, 'success');
+            });
+
+            // Module interaction handlers
+            trainingModules.forEach(module => {
+                const buttons = module.querySelectorAll('button');
+                
+                buttons.forEach(button => {
+                    if (button.classList.contains('play-button')) return; // Skip play buttons
+                    
+                    button.addEventListener('click', function() {
+                        const buttonText = this.textContent.trim();
+                        
+                        switch(buttonText) {
+                            case 'Start Module':
+                                showNotification('Starting training module...', 'info');
+                                break;
+                            case 'Continue Learning':
+                                showNotification('Resuming your progress...', 'info');
+                                break;
+                            case 'View Certificate':
+                                showNotification('Certificate downloaded successfully!', 'success');
+                                break;
+                            case 'Retake Quiz':
+                                showNotification('Quiz reset. Good luck!', 'info');
+                                break;
+                            case 'Download PPE Guide':
+                                showNotification('PPE guide downloaded!', 'success');
+                                break;
+                            case 'Preview Content':
+                                showNotification('Content preview loading...', 'info');
+                                break;
+                            case 'Download Resources':
+                                showNotification('Resources downloaded!', 'success');
+                                break;
+                            case 'Share Progress':
+                                showNotification('Progress shared with community!', 'success');
+                                break;
+                        }
+                    });
+                });
+            });
+
+            // Profile menu toggle
+            document.getElementById('profileMenu').addEventListener('click', function() {
+                showNotification('Profile menu functionality coming soon!', 'info');
+            });
+
+            // Utility function for notifications
+            function showNotification(message, type) {
+                const notification = document.createElement('div');
+                notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-civic-lg z-50 max-w-sm transition-civic ${
+                    type === 'error' ? 'bg-red-50 text-red-700 border border-red-200' :
+                    type === 'success' ? 'bg-green-50 text-green-700 border border-green-200' :
+                    'bg-blue-50 text-blue-700 border border-blue-200'
+                }`;
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }
+
+            // Initialize with fade-in animation
+            trainingModules.forEach((module, index) => {
+                setTimeout(() => {
+                    module.classList.add('fade-in');
+                }, index * 100);
+            });
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

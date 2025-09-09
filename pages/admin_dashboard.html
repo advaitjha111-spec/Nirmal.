@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - WasteWise Portal</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fwastewise9252back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header Section -->
+    <header class="bg-surface shadow-civic border-b border-border-light sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1zM10 6a2 2 0 0 1 4 0v1h-4V6zm8 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9h2v1a1 1 0 0 0 2 0V9h4v1a1 1 0 0 0 2 0V9h2v10z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-text-primary">WasteWise Portal</h1>
+                        <p class="text-xs text-text-secondary">Admin Control Center</p>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="admin_dashboard.html" class="text-primary font-medium border-b-2 border-primary pb-1">Dashboard</a>
+                    <a href="training_modules.html" class="text-text-secondary hover:text-primary transition-civic">Training</a>
+                    <a href="service_requests.html" class="text-text-secondary hover:text-primary transition-civic">Services</a>
+                </nav>
+
+                <!-- User Actions -->
+                <div class="flex items-center space-x-4">
+                    <!-- Emergency Alert -->
+                    <button id="emergencyBtn" class="touch-target bg-error text-white rounded-lg px-4 py-2 text-sm font-medium hover:bg-red-600 transition-civic">
+                        <svg class="w-4 h-4 inline mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2v-2zm0-6h2v4h-2v-4z"/>
+                        </svg>
+                        Emergency
+                    </button>
+                    
+                    <!-- Language Selector -->
+                    <select id="languageSelect" class="form-input text-sm py-2 px-3 min-h-0 w-auto">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="mr">मराठी</option>
+                    </select>
+
+                    <!-- Profile Menu -->
+                    <div class="relative">
+                        <button id="profileBtn" class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-civic">
+                            <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm font-medium">AD</span>
+                            </div>
+                            <span class="hidden sm:block text-sm">Admin</span>
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </button>
+                        <div id="profileMenu" class="hidden absolute right-0 mt-2 w-48 bg-surface rounded-lg shadow-civic-lg border border-border-light">
+                            <a href="citizen_dashboard.html" class="block px-4 py-2 text-sm text-text-secondary hover:bg-gray-50">Switch to Citizen</a>
+                            <a href="worker_dashboard.html" class="block px-4 py-2 text-sm text-text-secondary hover:bg-gray-50">Switch to Worker</a>
+                            <hr class="border-border-light" />
+                            <a href="login.html" class="block px-4 py-2 text-sm text-error hover:bg-red-50">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <!-- Dashboard Header -->
+        <div class="mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                    <h2 class="text-3xl font-bold text-text-primary">Municipal Control Center</h2>
+                    <p class="text-text-secondary mt-1">Real-time waste management oversight and analytics</p>
+                </div>
+                <div class="mt-4 sm:mt-0 flex items-center space-x-3">
+                    <div class="text-sm text-text-secondary">
+                        Last updated: <span class="font-medium">09 Sep 2025, 21:23</span>
+                    </div>
+                    <button id="refreshBtn" class="touch-target text-text-secondary hover:text-primary transition-civic">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Metrics Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="card p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-text-secondary text-sm">Total Collections</p>
+                        <p class="text-2xl font-bold text-text-primary">2,847</p>
+                        <p class="text-success text-sm">+12% from yesterday</p>
+                    </div>
+                    <div class="w-12 h-12 bg-primary-50 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-text-secondary text-sm">Active Workers</p>
+                        <p class="text-2xl font-bold text-text-primary">156</p>
+                        <p class="text-success text-sm">98% attendance</p>
+                    </div>
+                    <div class="w-12 h-12 bg-secondary-50 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H16c-.8 0-1.54.37-2 1l-3 4v7h2v7h3v-7h4z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-text-secondary text-sm">Zone Compliance</p>
+                        <p class="text-2xl font-bold text-text-primary">87%</p>
+                        <p class="text-warning text-sm">3 zones need attention</p>
+                    </div>
+                    <div class="w-12 h-12 bg-accent-50 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-text-secondary text-sm">Revenue Today</p>
+                        <p class="text-2xl font-bold text-text-primary">₹1,24,500</p>
+                        <p class="text-success text-sm">+8% from target</p>
+                    </div>
+                    <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-success" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-3.84 3.11-4.1V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 4.15-3.12 4.16z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Dashboard Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            <!-- Zone Compliance Chart -->
+            <div class="lg:col-span-2 card p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-lg font-semibold text-text-primary">Zone Compliance Overview</h3>
+                    <div class="flex items-center space-x-2">
+                        <select class="form-input text-sm py-1 px-2 min-h-0 w-auto">
+                            <option>Last 7 days</option>
+                            <option>Last 30 days</option>
+                            <option>Last 3 months</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="h-80 flex items-center justify-center bg-gray-50 rounded-lg">
+                    <svg width="400" height="300" viewBox="0 0 400 300">
+                        <!-- Chart Background -->
+                        <rect width="400" height="300" fill="#f9fafb" rx="8"/>
+                        
+                        <!-- Chart Title -->
+                        <text x="200" y="30" text-anchor="middle" class="text-sm font-medium" fill="#374151">Collection Efficiency by Zone</text>
+                        
+                        <!-- Line Chart -->
+                        <g transform="translate(50, 50)">
+                            <!-- Grid Lines -->
+                            <g stroke="#e5e7eb" stroke-width="1">
+                                <line x1="0" y1="0" x2="300" y2="0"/>
+                                <line x1="0" y1="50" x2="300" y2="50"/>
+                                <line x1="0" y1="100" x2="300" y2="100"/>
+                                <line x1="0" y1="150" x2="300" y2="150"/>
+                                <line x1="0" y1="200" x2="300" y2="200"/>
+                            </g>
+                            
+                            <!-- Zone A Line (Green - Good Performance) -->
+                            <polyline points="0,40 50,30 100,25 150,35 200,20 250,15 300,10" fill="none" stroke="#4CAF50" stroke-width="3"/>
+                            
+                            <!-- Zone B Line (Orange - Moderate Performance) -->
+                            <polyline points="0,80 50,70 100,85 150,75 200,90 250,80 300,85" fill="none" stroke="#FF9800" stroke-width="3"/>
+                            
+                            <!-- Zone C Line (Red - Needs Attention) -->
+                            <polyline points="0,120 50,140 100,130 150,145 200,135 250,150 300,140" fill="none" stroke="#F44336" stroke-width="3"/>
+                            
+                            <!-- Data Points -->
+                            <circle cx="300" cy="10" r="4" fill="#4CAF50"/>
+                            <circle cx="300" cy="85" r="4" fill="#FF9800"/>
+                            <circle cx="300" cy="140" r="4" fill="#F44336"/>
+                        </g>
+                        
+                        <!-- Legend -->
+                        <g transform="translate(50, 260)">
+                            <circle cx="10" cy="10" r="4" fill="#4CAF50"/>
+                            <text x="20" y="15" class="text-xs" fill="#374151">Zone A (95%)</text>
+                            
+                            <circle cx="100" cy="10" r="4" fill="#FF9800"/>
+                            <text x="110" y="15" class="text-xs" fill="#374151">Zone B (78%)</text>
+                            
+                            <circle cx="190" cy="10" r="4" fill="#F44336"/>
+                            <text x="200" y="15" class="text-xs" fill="#374151">Zone C (65%)</text>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Real-time Alerts -->
+            <div class="card p-6">
+                <h3 class="text-lg font-semibold text-text-primary mb-4">Real-time Alerts</h3>
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-3 p-3 bg-red-50 rounded-lg border border-red-200">
+                        <div class="w-2 h-2 bg-error rounded-full mt-2 animate-pulse"></div>
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-error">Vehicle Breakdown</p>
+                            <p class="text-xs text-red-600">Truck #WW-247 in Zone C</p>
+                            <p class="text-xs text-red-500">2 minutes ago</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-3 p-3 bg-orange-50 rounded-lg border border-orange-200">
+                        <div class="w-2 h-2 bg-warning rounded-full mt-2"></div>
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-warning">Low Stock Alert</p>
+                            <p class="text-xs text-orange-600">Compost kits below 20%</p>
+                            <p class="text-xs text-orange-500">15 minutes ago</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                        <div class="w-2 h-2 bg-secondary rounded-full mt-2"></div>
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-secondary">Maintenance Due</p>
+                            <p class="text-xs text-blue-600">Facility #3 scheduled today</p>
+                            <p class="text-xs text-blue-500">1 hour ago</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                        <div class="w-2 h-2 bg-success rounded-full mt-2"></div>
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-success">Target Achieved</p>
+                            <p class="text-xs text-green-600">Zone A exceeded daily goal</p>
+                            <p class="text-xs text-green-500">2 hours ago</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="w-full mt-4 text-sm text-primary hover:text-primary-600 font-medium">
+                    View All Alerts
+                </button>
+            </div>
+        </div>
+
+        <!-- Vehicle Tracking & Worker Productivity -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <!-- Real-time Vehicle Tracking -->
+            <div class="card p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-text-primary">Vehicle Tracking</h3>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-success rounded-full animate-pulse"></div>
+                        <span class="text-sm text-success">Live</span>
+                    </div>
+                </div>
+                
+                <div class="h-64 bg-gray-100 rounded-lg relative overflow-hidden">
+                    <!-- Map Background -->
+                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3" alt="City Map" class="w-full h-full object-cover" onerror="this.src='https://images.pexels.com/photos/1252814/pexels-photo-1252814.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'; this.onerror=null;" />
+                    
+                    <!-- Vehicle Markers -->
+                    <div class="absolute top-4 left-4 w-4 h-4 bg-primary rounded-full border-2 border-white shadow-lg animate-pulse"></div>
+                    <div class="absolute top-12 right-8 w-4 h-4 bg-secondary rounded-full border-2 border-white shadow-lg animate-pulse"></div>
+                    <div class="absolute bottom-8 left-12 w-4 h-4 bg-warning rounded-full border-2 border-white shadow-lg"></div>
+                    <div class="absolute bottom-4 right-4 w-4 h-4 bg-success rounded-full border-2 border-white shadow-lg animate-pulse"></div>
+                    
+                    <!-- Map Controls -->
+                    <div class="absolute top-4 right-4 bg-white rounded-lg shadow-civic p-2">
+                        <button class="block w-6 h-6 text-text-secondary hover:text-primary mb-1">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                        </button>
+                        <button class="block w-6 h-6 text-text-secondary hover:text-primary">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Vehicle Status List -->
+                <div class="mt-4 space-y-2">
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 bg-primary rounded-full"></div>
+                            <span>WW-101</span>
+                        </div>
+                        <span class="text-success">Active - Zone A</span>
+                    </div>
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 bg-secondary rounded-full"></div>
+                            <span>WW-205</span>
+                        </div>
+                        <span class="text-success">Active - Zone B</span>
+                    </div>
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 bg-warning rounded-full"></div>
+                            <span>WW-247</span>
+                        </div>
+                        <span class="text-error">Breakdown - Zone C</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Worker Productivity -->
+            <div class="card p-6">
+                <h3 class="text-lg font-semibold text-text-primary mb-4">Worker Productivity</h3>
+                
+                <!-- Productivity Metrics -->
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="text-center p-4 bg-primary-50 rounded-lg">
+                        <p class="text-2xl font-bold text-primary">98%</p>
+                        <p class="text-sm text-text-secondary">Attendance</p>
+                    </div>
+                    <div class="text-center p-4 bg-secondary-50 rounded-lg">
+                        <p class="text-2xl font-bold text-secondary">87%</p>
+                        <p class="text-sm text-text-secondary">Task Completion</p>
+                    </div>
+                </div>
+
+                <!-- Top Performers -->
+                <div class="space-y-3">
+                    <h4 class="font-medium text-text-primary">Top Performers Today</h4>
+                    
+                    <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-success rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm font-medium">1</span>
+                            </div>
+                            <div>
+                                <p class="font-medium text-text-primary">Rajesh Kumar</p>
+                                <p class="text-sm text-text-secondary">Zone A Supervisor</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-medium text-success">145%</p>
+                            <p class="text-xs text-text-secondary">Efficiency</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-secondary rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm font-medium">2</span>
+                            </div>
+                            <div>
+                                <p class="font-medium text-text-primary">Priya Sharma</p>
+                                <p class="text-sm text-text-secondary">Collection Worker</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-medium text-secondary">132%</p>
+                            <p class="text-xs text-text-secondary">Efficiency</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 bg-orange-50 rounded-lg">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm font-medium">3</span>
+                            </div>
+                            <div>
+                                <p class="font-medium text-text-primary">Mohammed Ali</p>
+                                <p class="text-sm text-text-secondary">Route Optimizer</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-medium text-accent">128%</p>
+                            <p class="text-xs text-text-secondary">Efficiency</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Facility Monitoring & Revenue Tracking -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <!-- Facility Monitoring -->
+            <div class="card p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-text-primary">Facility Status</h3>
+                    <button class="text-sm text-primary hover:text-primary-600 font-medium">View All</button>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-4 border border-green-200 rounded-lg bg-green-50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-3 h-3 bg-success rounded-full animate-pulse"></div>
+                            <div>
+                                <p class="font-medium text-text-primary">Processing Plant #1</p>
+                                <p class="text-sm text-text-secondary">Operational - 99.2% uptime</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm font-medium text-success">Online</p>
+                            <p class="text-xs text-text-secondary">24/7</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between p-4 border border-orange-200 rounded-lg bg-orange-50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-3 h-3 bg-warning rounded-full"></div>
+                            <div>
+                                <p class="font-medium text-text-primary">Sorting Facility #2</p>
+                                <p class="text-sm text-text-secondary">Maintenance scheduled</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm font-medium text-warning">Scheduled</p>
+                            <p class="text-xs text-text-secondary">2:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between p-4 border border-green-200 rounded-lg bg-green-50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-3 h-3 bg-success rounded-full animate-pulse"></div>
+                            <div>
+                                <p class="font-medium text-text-primary">Compost Unit #3</p>
+                                <p class="text-sm text-text-secondary">High efficiency mode</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm font-medium text-success">Online</p>
+                            <p class="text-xs text-text-secondary">18/7</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between p-4 border border-red-200 rounded-lg bg-red-50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-3 h-3 bg-error rounded-full animate-pulse"></div>
+                            <div>
+                                <p class="font-medium text-text-primary">Transfer Station #4</p>
+                                <p class="text-sm text-text-secondary">Equipment failure</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm font-medium text-error">Offline</p>
+                            <p class="text-xs text-text-secondary">2h 15m</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Revenue & Stock Management -->
+            <div class="card p-6">
+                <h3 class="text-lg font-semibold text-text-primary mb-4">Revenue & Inventory</h3>
+                
+                <!-- Revenue Summary -->
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="text-center p-4 bg-green-50 rounded-lg">
+                        <p class="text-xl font-bold text-success">₹1,24,500</p>
+                        <p class="text-sm text-text-secondary">Today's Revenue</p>
+                    </div>
+                    <div class="text-center p-4 bg-blue-50 rounded-lg">
+                        <p class="text-xl font-bold text-secondary">₹8,67,200</p>
+                        <p class="text-sm text-text-secondary">This Month</p>
+                    </div>
+                </div>
+
+                <!-- Stock Alerts -->
+                <div class="space-y-3">
+                    <h4 class="font-medium text-text-primary">Inventory Alerts</h4>
+                    
+                    <div class="flex items-center justify-between p-3 bg-red-50 rounded-lg border border-red-200">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-error" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2v-2zm0-6h2v4h-2v-4z"/>
+                            </svg>
+                            <div>
+                                <p class="font-medium text-text-primary">Compost Kits</p>
+                                <p class="text-sm text-text-secondary">Critical - 15% remaining</p>
+                            </div>
+                        </div>
+                        <button class="text-sm bg-error text-white px-3 py-1 rounded-lg hover:bg-red-600 transition-civic">
+                            Reorder
+                        </button>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 bg-orange-50 rounded-lg border border-orange-200">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-warning" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2v-2zm0-6h2v4h-2v-4z"/>
+                            </svg>
+                            <div>
+                                <p class="font-medium text-text-primary">Safety Equipment</p>
+                                <p class="text-sm text-text-secondary">Low - 35% remaining</p>
+                            </div>
+                        </div>
+                        <button class="text-sm bg-warning text-white px-3 py-1 rounded-lg hover:bg-orange-600 transition-civic">
+                            Order
+                        </button>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg border border-green-200">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <div>
+                                <p class="font-medium text-text-primary">Collection Bags</p>
+                                <p class="text-sm text-text-secondary">Good - 78% remaining</p>
+                            </div>
+                        </div>
+                        <span class="text-sm text-success font-medium">In Stock</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions & Reports -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Emergency Response Panel -->
+            <div class="card p-6">
+                <h3 class="text-lg font-semibold text-text-primary mb-4">Emergency Response</h3>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <button class="flex flex-col items-center p-4 bg-red-50 border border-red-200 rounded-lg hover:bg-red-100 transition-civic">
+                        <svg class="w-8 h-8 text-error mb-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2v-2zm0-6h2v4h-2v-4z"/>
+                        </svg>
+                        <span class="text-sm font-medium text-error">Emergency Alert</span>
+                    </button>
+
+                    <button class="flex flex-col items-center p-4 bg-orange-50 border border-orange-200 rounded-lg hover:bg-orange-100 transition-civic">
+                        <svg class="w-8 h-8 text-warning mb-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM15.1 8H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+                        </svg>
+                        <span class="text-sm font-medium text-warning">Route Block</span>
+                    </button>
+
+                    <button class="flex flex-col items-center p-4 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition-civic">
+                        <svg class="w-8 h-8 text-secondary mb-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        <span class="text-sm font-medium text-secondary">Send Notice</span>
+                    </button>
+
+                    <button class="flex flex-col items-center p-4 bg-purple-50 border border-purple-200 rounded-lg hover:bg-purple-100 transition-civic">
+                        <svg class="w-8 h-8 text-purple-600 mb-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M3 5v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.11 0-2 .9-2 2zm12 4c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3zm-9 8c0-2 4-3.1 6-3.1s6 1.1 6 3.1v1H6v-1z"/>
+                        </svg>
+                        <span class="text-sm font-medium text-purple-600">Call Support</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Report Generation -->
+            <div class="card p-6">
+                <h3 class="text-lg font-semibold text-text-primary mb-4">Generate Reports</h3>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                        <div>
+                            <p class="font-medium text-text-primary">Daily Operations Report</p>
+                            <p class="text-sm text-text-secondary">Collection, routes, efficiency</p>
+                        </div>
+                        <button class="btn-primary text-sm px-4 py-2">
+                            Generate PDF
+                        </button>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                        <div>
+                            <p class="font-medium text-text-primary">Worker Performance</p>
+                            <p class="text-sm text-text-secondary">Attendance, productivity, ratings</p>
+                        </div>
+                        <button class="btn-secondary text-sm px-4 py-2">
+                            Export Excel
+                        </button>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                        <div>
+                            <p class="font-medium text-text-primary">Revenue Analysis</p>
+                            <p class="text-sm text-text-secondary">Sales, inventory, trends</p>
+                        </div>
+                        <button class="btn-accent text-sm px-4 py-2">
+                            View Dashboard
+                        </button>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                        <div>
+                            <p class="font-medium text-text-primary">Compliance Summary</p>
+                            <p class="text-sm text-text-secondary">Zone status, violations, fines</p>
+                        </div>
+                        <button class="bg-purple-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-purple-700 transition-civic">
+                            Generate
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-border-light py-6 mt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center space-y-2">
+                <p class="text-sm text-text-secondary">
+                    © 2025 WasteWise Portal. All Rights Reserved.
+                </p>
+                <div class="flex justify-center items-center space-x-6 text-xs text-text-secondary">
+                    <a href="javascript:void(0)" class="hover:text-primary transition-civic">System Status</a>
+                    <a href="javascript:void(0)" class="hover:text-primary transition-civic">API Documentation</a>
+                    <a href="javascript:void(0)" class="hover:text-primary transition-civic">Support Center</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Admin Dashboard Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            // Profile Menu Toggle
+            const profileBtn = document.getElementById('profileBtn');
+            const profileMenu = document.getElementById('profileMenu');
+            
+            profileBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                profileMenu.classList.toggle('hidden');
+            });
+            
+            // Close profile menu when clicking outside
+            document.addEventListener('click', function() {
+                profileMenu.classList.add('hidden');
+            });
+            
+            // Emergency Button
+            document.getElementById('emergencyBtn').addEventListener('click', function() {
+                showNotification('Emergency alert system activated! All relevant personnel have been notified.', 'error');
+            });
+            
+            // Refresh Button
+            document.getElementById('refreshBtn').addEventListener('click', function() {
+                const button = this;
+                button.classList.add('animate-spin');
+                
+                // Simulate data refresh
+                setTimeout(() => {
+                    button.classList.remove('animate-spin');
+                    showNotification('Dashboard data refreshed successfully!', 'success');
+                    updateTimestamp();
+                }, 1000);
+            });
+            
+            // Language Selection
+            document.getElementById('languageSelect').addEventListener('change', function() {
+                showNotification('Language preference updated!', 'info');
+            });
+            
+            // Update timestamp
+            function updateTimestamp() {
+                const now = new Date();
+                const timeString = now.toLocaleString('en-IN', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                const timestampElements = document.querySelectorAll('[data-timestamp]');
+                timestampElements.forEach(el => {
+                    el.textContent = timeString;
+                });
+            }
+            
+            // Simulate real-time updates
+            setInterval(() => {
+                updateMetrics();
+            }, 30000); // Update every 30 seconds
+            
+            function updateMetrics() {
+                // Simulate metric updates
+                const metrics = document.querySelectorAll('[data-metric]');
+                metrics.forEach(metric => {
+                    const currentValue = parseInt(metric.textContent.replace(/[^\d]/g, ''));
+                    const variation = Math.floor(Math.random() * 10) - 5; // -5 to +5
+                    const newValue = Math.max(0, currentValue + variation);
+                    
+                    if (metric.textContent.includes('%')) {
+                        metric.textContent = Math.min(100, newValue) + '%';
+                    } else if (metric.textContent.includes('₹')) {
+                        metric.textContent = '₹' + newValue.toLocaleString('en-IN');
+                    } else {
+                        metric.textContent = newValue.toLocaleString('en-IN');
+                    }
+                });
+            }
+            
+            // Chart interactions (placeholder)
+            const chartElements = document.querySelectorAll('svg circle, svg rect');
+            chartElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.opacity = '0.8';
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    this.style.opacity = '1';
+                });
+            });
+            
+            // Utility function for notifications
+            function showNotification(message, type) {
+                const notification = document.createElement('div');
+                notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-civic-lg z-50 max-w-sm transition-civic ${
+                    type === 'error' ? 'bg-red-50 text-red-700 border border-red-200' :
+                    type === 'success' ? 'bg-green-50 text-green-700 border border-green-200' :
+                    type === 'warning' ? 'bg-orange-50 text-orange-700 border border-orange-200' :
+                    'bg-blue-50 text-blue-700 border border-blue-200'
+                }`;
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+                // Animate in
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                    notification.style.opacity = '1';
+                }, 100);
+                
+                // Remove after 4 seconds
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(100%)';
+                    notification.style.opacity = '0';
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 300);
+                }, 4000);
+            }
+            
+            // Initialize dashboard
+            updateTimestamp();
+            
+            // Simulate some initial alerts
+            setTimeout(() => {
+                showNotification('Dashboard loaded successfully. All systems operational.', 'success');
+            }, 1000);
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>
